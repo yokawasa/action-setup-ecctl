@@ -1,10 +1,16 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
-inputs:
-  myInput:              # change this
-    description: 'input description here'
-    default: 'default value if applicable'
+name: 'Elastic Cloud Control (ecctl) tool installer'
+description: 'Install a specific version of ecctl tool and cache it.'
+inputs: 
+  version:
+    description: 'Version of ecctl'
+    required: true
+    default: 'latest'
+outputs:
+  ecctl-path:
+    description: 'Path to the cached ecctl tool'
+branding:
+  color: 'blue'
 runs:
   using: 'node12'
-  main: 'dist/index.js'
+  main: 'lib/run.js'
+
