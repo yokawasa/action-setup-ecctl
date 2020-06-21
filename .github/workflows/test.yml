@@ -14,14 +14,25 @@ jobs:
     - run: |
         npm install
         npm run all
-  test: # make sure the action works on a clean machine without building
+  test1: # make sure the action works on a clean machine without building
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
     - uses: ./
-      #with: 
+      with: 
+        version: 'v1.0.0-beta2'
         # version: 'v1.0.0-beta3'
         # version: 'latest'
+      id: setup
+    - run: |
+        ecctl=${{steps.setup.outputs.ecctl-path}}
+        ${ecctl} version
+
+  test2: # make sure the action works on a clean machine without building
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: ./
       id: setup
     - run: |
         ecctl=${{steps.setup.outputs.ecctl-path}}
