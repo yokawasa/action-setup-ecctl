@@ -4,15 +4,21 @@
 
 # action-setup-ecctl
 
-A GitHub action that install a specific version of ecctl and cache on the runner
+A GitHub action that install a specific version of [ecctl](https://github.com/elastic/ecctl) and cache on the runner
 
 ## Usage
 
 ### Inputs
-TBU
+
+|Parameter|Required|Default Value|Description|
+|:--:|:--:|:--:|:--|
+|`token`|`false`|`latest`|Ecctl tool version such as `v1.0.0-beta3`. Ecctl vesion can be found [here](https://github.com/elastic/ecctl/releases).|
+
+> Supported Environments: Linux and macOS
 
 ### Sample Workflow
 
+A specific version of ecctl can be setup by giving an input - `version` like this:
 ```yaml
 - uses: yokawasa/action-setup-ecctl@v0.1.0
   with:
@@ -23,6 +29,15 @@ TBU
   ${ecctl} version
 ```
 
+The latest version of ecctl will be setup if you don't give an input like this:
+
+```yaml
+- uses: yokawasa/action-setup-ecctl@v0.1.0
+  id: setup
+- run: |
+  ecctl=${{steps.setup.outputs.ecctl-path}}
+  ${ecctl} version
+```
 
 ## Developing the action
 

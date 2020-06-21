@@ -7,11 +7,12 @@ import fetch from 'node-fetch'
 import * as toolCache from '@actions/tool-cache'
 import * as core from '@actions/core'
 
+const defaultVesrion = 'latest'
 const ecctlCommandName = 'ecctl'
 const latestReleaseVersionUrl =
   'https://github.com/elastic/ecctl/releases/latest'
 
-function getkubectlDownloadURL(version: string): string {
+function getEcctlDownloadURL(version: string): string {
   switch (os.type()) {
     case 'Linux':
       return util.format(
@@ -64,7 +65,7 @@ async function download(version: string): Promise<string> {
   if (!cachedToolpath) {
     try {
       const downloadPackagePath = await toolCache.downloadTool(
-        getkubectlDownloadURL(_version)
+        getEcctlDownloadURL(_version)
       )
       fs.mkdirSync(`${downloadPackagePath}_extracted`)
       const extractedDir = await toolCache.extractTar(
@@ -93,7 +94,10 @@ async function run() {
   if (os.type().match(/^Win/)) {
     throw new Error('Windows is not supported OS!')
   }
-  let version = core.getInput('version', {required: true})
+  let version = core.getInput('version', {required: false})
+  if (!version) {
+    version = defaultVesrion
+  }
   if (version.toLocaleLowerCase() === 'latest') {
     version = await getLatestReleaseVersion()
   }
