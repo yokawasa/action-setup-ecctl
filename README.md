@@ -4,7 +4,7 @@
 
 # action-setup-ecctl
 
-A GitHub action that install a specific version of [ecctl](https://github.com/elastic/ecctl), Elastic Cloud control tool and cache it on the runner
+A GitHub action that install a specific version of [ecctl](https://github.com/elastic/ecctl) (Elastic Cloud control tool) and cache it on the runner
 
 ## Usage
 
