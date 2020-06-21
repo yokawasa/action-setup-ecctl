@@ -20,4 +20,8 @@ jobs:
     - uses: actions/checkout@v1
     - uses: ./
       with: 
-        milliseconds: 1000
+        version: 'v1.0.0-beta3'
+      id: setup
+    - run: |
+        ecctl=${{steps.setup.outputs.ecctl-path}}
+        ${ecctl} version
