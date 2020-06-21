@@ -19,9 +19,9 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - uses: ./
-      with: 
+      #with: 
         # version: 'v1.0.0-beta3'
-        version: 'latest'
+        # version: 'latest'
       id: setup
     - run: |
         ecctl=${{steps.setup.outputs.ecctl-path}}
