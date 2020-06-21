@@ -1,5 +1,6 @@
 name: 'Elastic Cloud Control (ecctl) tool installer'
 description: 'Install a specific version of ecctl tool and cache it.'
+author: 'Yoichi Kawasaki @yokawasa'
 inputs: 
   version:
     description: 'Version of ecctl'
@@ -12,5 +13,4 @@ branding:
   color: 'blue'
 runs:
   using: 'node12'
-  main: 'lib/main.js'
-
+  main: 'dist/index.js'
