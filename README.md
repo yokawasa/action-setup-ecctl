@@ -12,7 +12,7 @@ A GitHub action that install a specific version of [ecctl](https://github.com/el
 
 |Parameter|Required|Default Value|Description|
 |:--:|:--:|:--:|:--|
-|`token`|`false`|`latest`|Ecctl tool version such as `v1.0.0-beta3`. Ecctl vesion can be found [here](https://github.com/elastic/ecctl/releases).|
+|`version`|`false`|`latest`|Ecctl tool version such as `v1.0.0-beta3`. Ecctl vesion can be found [here](https://github.com/elastic/ecctl/releases).|
 
 > Supported Environments: Linux and macOS
 
