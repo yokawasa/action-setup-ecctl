@@ -1420,9 +1420,10 @@ const fs = __importStar(__webpack_require__(747));
 const node_fetch_1 = __importDefault(__webpack_require__(454));
 const toolCache = __importStar(__webpack_require__(533));
 const core = __importStar(__webpack_require__(470));
+const defaultVesrion = 'latest';
 const ecctlCommandName = 'ecctl';
 const latestReleaseVersionUrl = 'https://github.com/elastic/ecctl/releases/latest';
-function getkubectlDownloadURL(version) {
+function getEcctlDownloadURL(version) {
     switch (os.type()) {
         case 'Linux':
             return util.format('https://download.elastic.co/downloads/ecctl/%s/ecctl_%s_linux_amd64.tar.gz', version, version);
@@ -1461,7 +1462,7 @@ function download(version) {
         let downloadEcctlPath = '';
         if (!cachedToolpath) {
             try {
-                const downloadPackagePath = yield toolCache.downloadTool(getkubectlDownloadURL(_version));
+                const downloadPackagePath = yield toolCache.downloadTool(getEcctlDownloadURL(_version));
                 fs.mkdirSync(`${downloadPackagePath}_extracted`);
                 const extractedDir = yield toolCache.extractTar(downloadPackagePath, `${downloadPackagePath}_extracted`);
                 downloadEcctlPath = util.format('%s/ecctl', extractedDir);
@@ -1482,7 +1483,10 @@ function run() {
         if (os.type().match(/^Win/)) {
             throw new Error('Windows is not supported OS!');
         }
-        let version = core.getInput('version', { required: true });
+        let version = core.getInput('version', { required: false });
+        if (!version) {
+            version = defaultVesrion;
+        }
         if (version.toLocaleLowerCase() === 'latest') {
             version = yield getLatestReleaseVersion();
         }
@@ -3699,6 +3703,12 @@ function convertBody(buffer, headers) {
 	// html4
 	if (!res && str) {
 		res = /<meta[\s]+?http-equiv=(['"])content-type\1[\s]+?content=(['"])(.+?)\2/i.exec(str);
+		if (!res) {
+			res = /<meta[\s]+?content=(['"])(.+?)\1[\s]+?http-equiv=(['"])content-type\3/i.exec(str);
+			if (res) {
+				res.pop(); // drop last quote
+			}
+		}
 
 		if (res) {
 			res = /charset=(.*)/i.exec(res.pop());
@@ -4706,7 +4716,7 @@ function fetch(url, opts) {
 				// HTTP fetch step 5.5
 				switch (request.redirect) {
 					case 'error':
-						reject(new FetchError(`redirect mode is set to error: ${request.url}`, 'no-redirect'));
+						reject(new FetchError(`uri requested responds with a redirect, redirect mode is set to error: ${request.url}`, 'no-redirect'));
 						finalize();
 						return;
 					case 'manual':
@@ -4745,7 +4755,8 @@ function fetch(url, opts) {
 							method: request.method,
 							body: request.body,
 							signal: request.signal,
-							timeout: request.timeout
+							timeout: request.timeout,
+							size: request.size
 						};
 
 						// HTTP-redirect fetch step 9
