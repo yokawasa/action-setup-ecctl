@@ -12,7 +12,7 @@ A GitHub action that install a specific version of [ecctl](https://github.com/el
 
 |Parameter|Required|Default Value|Description|
 |:--:|:--:|:--:|:--|
-|`version`|`false`|`latest`|Ecctl tool version such as `v1.0.0-beta3`. Ecctl vesion can be found [here](https://github.com/elastic/ecctl/releases).|
+|`version`|`false`|`latest`|Ecctl tool version such as `v1.0.0`. Ecctl vesion can be found [here](https://github.com/elastic/ecctl/releases).|
 
 > Supported Environments: Linux and macOS
 
@@ -20,9 +20,9 @@ A GitHub action that install a specific version of [ecctl](https://github.com/el
 
 A specific version of ecctl can be setup by giving an input - `version` like this:
 ```yaml
-- uses: yokawasa/action-setup-ecctl@v0.1.0
+- uses: yokawasa/action-setup-ecctl@v0.1.1
   with:
-    version: 'v1.0.0-beta3'   # default is 'latest'
+    version: 'v1.0.0'   # default is 'latest'
   id: setup
 - run: |
   ecctl=${{steps.setup.outputs.ecctl-path}}
@@ -32,7 +32,7 @@ A specific version of ecctl can be setup by giving an input - `version` like thi
 The latest version of ecctl will be setup if you don't give an input like this:
 
 ```yaml
-- uses: yokawasa/action-setup-ecctl@v0.1.0
+- uses: yokawasa/action-setup-ecctl@v0.1.1
   id: setup
 - run: |
   ecctl=${{steps.setup.outputs.ecctl-path}}
@@ -55,7 +55,7 @@ Finally push the resutls
 ```
 git add dist
 git commit -a -m "prod dependencies"
-git push origin releases/v0.1.0
+git push origin releases/v0.1.1
 ```
 
 ## Contributing
