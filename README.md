@@ -16,6 +16,13 @@ A GitHub action that install a specific version of [ecctl](https://github.com/el
 
 > Supported Environments: Linux and macOS
 
+### Outputs
+
+|Parameter|Description|
+|:--:|:--|
+|`ecctl-path`| ecctl command path |
+
+
 ### Sample Workflow
 
 A specific version of ecctl can be setup by giving an input - `version` like this:
@@ -25,8 +32,7 @@ A specific version of ecctl can be setup by giving an input - `version` like thi
     version: 'v1.0.0'   # default is 'latest'
   id: setup
 - run: |
-  ecctl=${{steps.setup.outputs.ecctl-path}}
-  ${ecctl} version
+  ecctl version
 ```
 
 The latest version of ecctl will be setup if you don't give an input like this:
@@ -35,8 +41,7 @@ The latest version of ecctl will be setup if you don't give an input like this:
 - uses: yokawasa/action-setup-ecctl@v0.1.1
   id: setup
 - run: |
-  ecctl=${{steps.setup.outputs.ecctl-path}}
-  ${ecctl} version
+  ecctl version
 ```
 
 ## Developing the action
