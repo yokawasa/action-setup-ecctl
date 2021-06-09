@@ -1,6 +1,6 @@
 {
   "name": "action-setup-ecctl",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "description": "A GitHub action that install a specific version of ecctl and cache on the runner",
   "main": "lib/main.js",
