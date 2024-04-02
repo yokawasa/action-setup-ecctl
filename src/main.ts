@@ -103,7 +103,6 @@ async function run() {
   }
   const cachedPath = await download(version)
   core.addPath(path.dirname(cachedPath))
-  // eslint-disable-next-line no-console
   console.log(
     `Ecctl tool version: '${version}' has been cached at ${cachedPath}`
   )

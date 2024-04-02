@@ -53,7 +53,7 @@ npm install
 
 Build the typescript and package it for distribution by running [ncc](https://github.com/zeit/ncc)
 ```bash
-npm run build && npm run pack
+npm run build && npm run format && npm run lint && npm run pack
 ```
 
 Finally push the resutls
