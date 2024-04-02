@@ -27,7 +27,7 @@ A GitHub action that install a specific version of [ecctl](https://github.com/el
 
 A specific version of ecctl can be setup by giving an input - `version` like this:
 ```yaml
-- uses: yokawasa/action-setup-ecctl@v0.3.1
+- uses: yokawasa/action-setup-ecctl@v0.4.0
   with:
     version: 'v1.3.1'   # default is 'latest'
   id: setup
@@ -38,7 +38,7 @@ A specific version of ecctl can be setup by giving an input - `version` like thi
 The latest version of ecctl will be setup if you don't give an input like this:
 
 ```yaml
-- uses: yokawasa/action-setup-ecctl@v0.3.1
+- uses: yokawasa/action-setup-ecctl@v0.4.0
   id: setup
 - run: |
   ecctl version
@@ -51,7 +51,7 @@ Install the dependencies
 npm install
 ```
 
-Build the typescript and package it for distribution by running [ncc](https://github.com/zeit/ncc)
+Build the typescript and package it for distribution by running [ncc](https://github.com/vercel/ncc)
 ```bash
 npm run build && npm run format && npm run lint && npm run pack
 ```
@@ -60,7 +60,7 @@ Finally push the resutls
 ```
 git add dist
 git commit -a -m "prod dependencies"
-git push origin releases/v0.3.1
+git push origin releases/v0.4.0
 ```
 
 ## Contributing
