@@ -27,7 +27,7 @@ A GitHub action that install a specific version of [ecctl](https://github.com/el
 
 A specific version of ecctl can be setup by giving an input - `version` like this:
 ```yaml
-- uses: yokawasa/action-setup-ecctl@v0.4.0
+- uses: yokawasa/action-setup-ecctl@v0.4.1
   with:
     version: 'v1.3.1'   # default is 'latest'
   id: setup
@@ -38,7 +38,7 @@ A specific version of ecctl can be setup by giving an input - `version` like thi
 The latest version of ecctl will be setup if you don't give an input like this:
 
 ```yaml
-- uses: yokawasa/action-setup-ecctl@v0.4.0
+- uses: yokawasa/action-setup-ecctl@v0.4.1
   id: setup
 - run: |
   ecctl version
@@ -60,8 +60,13 @@ Finally push the resutls
 ```
 git add dist
 git commit -a -m "prod dependencies"
-git push origin releases/v0.4.0
+git push origin releases/v0.4.1
 ```
 
 ## Contributing
+
 Bug reports and pull requests are welcome on GitHub at https://github.com/yokawasa/action-setup-ecctl
+
+## Changelog
+
+Please see the [list of releases](https://github.com/yokawasa/action-setup-ecctl/releases) for information on changes between releases.
