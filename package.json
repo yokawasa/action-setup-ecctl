@@ -42,7 +42,7 @@
     "eslint-plugin-github": "^4.10.2",
     "eslint-plugin-jest": "^22.21.0",
     "form-data": "^4.0.6",
-    "js-yaml": "^4.3.0",
+    "js-yaml": "^4.3.1",
     "prettier": "^1.19.1",
     "ts-jest": "^29.4.11",
     "typescript": "^5.9.2",
